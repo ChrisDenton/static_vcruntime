@@ -16,7 +16,7 @@
 //! And put the follwing in your `main.rs`:
 //!
 //! ```rust
-//! extern crate static_vcruntime
+//! extern crate static_vcruntime;
 //! ```
 //!
 //! That is all. Then when you build a release binary, the runtime will be
