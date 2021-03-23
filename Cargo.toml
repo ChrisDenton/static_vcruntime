@@ -5,3 +5,10 @@ version = "1.0.0"
 authors = ["Chris Denton <christophersdenton@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0 OR Zlib"
+repository = "https://github.com/ChrisDenton/static_vcruntime"
+keywords = ["windows", "msvc", "vcruntime"]
+# I think build-utils is the closest match but this shouldn't be used in a build script.
+categories = ["development-tools::build-utils", "no-std"]
+exclude = [
+    "examples/*"
+]
