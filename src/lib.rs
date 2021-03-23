@@ -1,3 +1,5 @@
+#![no_std]
+
 //! Statically link the VCRuntime when using the MSVC toolchain
 //!
 //! By default, Rust requires programs to deploy `vcruntime140.dll`
