@@ -27,7 +27,7 @@
 //! cargo build --release
 //! ```
 
-#[cfg(all(target_env = "msvc", not(debug_assertions), not(test)))]
+#[cfg(all(windows, target_env = "msvc", not(debug_assertions), not(test)))]
 #[link_section = ".drectve"]
 #[used]
 static DIRECTIVE: [u8; 305] = *b" /NODEFAULTLIB:libvcruntimed.lib /NODEFAULTLIB:vcruntime.lib /NODEFAULTLIB:vcruntimed.lib /NODEFAULTLIB:libcmtd.lib /NODEFAULTLIB:msvcrt.lib /NODEFAULTLIB:msvcrtd.lib /NODEFAULTLIB:libucrt.lib /NODEFAULTLIB:libucrtd.lib /NODEFAULTLIB:ucrtd.lib /DEFAULTLIB:ucrt /DEFAULTLIB:libvcruntime /DEFAULTLIB:libcmt ";
