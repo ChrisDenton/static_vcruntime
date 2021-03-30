@@ -12,7 +12,7 @@
 //!
 //! ```ini
 //! [dependencies]
-//! static_vcruntime = "1"
+//! static_vcruntime = "1.1"
 //! ```
 //!
 //! And put the follwing in your `main.rs`:
