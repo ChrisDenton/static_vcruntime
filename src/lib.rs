@@ -12,7 +12,7 @@
 //!
 //! ```ini
 //! [dependencies]
-//! static_vcruntime = "1.3"
+//! static_vcruntime = "1.4"
 //! ```
 //!
 //! And put the follwing in your `main.rs`:
@@ -28,7 +28,7 @@
 //! ```
 
 #[cfg(all(windows, target_env = "msvc", release))]
-#[link(name="libcmt")]
+#[link(name="ucrt")]
 extern {}
 
 #[cfg(all(windows, target_env = "msvc", release))]
@@ -36,7 +36,7 @@ extern {}
 extern {}
 
 #[cfg(all(windows, target_env = "msvc", release))]
-#[link(name="ucrt")]
+#[link(name="libcmt")]
 extern {}
 
 #[cfg(all(windows, target_env = "msvc", release))]

@@ -10,7 +10,7 @@ Add this to your `Cargo.toml`:
 
 ```ini
 [dependencies]
-static_vcruntime = "1.3"
+static_vcruntime = "1.4"
 ```
 
 And put the follwing in your `main.rs`:
