@@ -2,6 +2,11 @@ use std::{env, fs, io::Write, path::Path};
 
 fn main() {
     println!("cargo:rerun-if-env-changed=PROFILE");
+
+    // Early exit if not msvc
+    let environment = env::var("CARGO_CFG_TARGET_ENV").unwrap();
+    if environment != "msvc" { return; }
+
     if ::std::env::var("PROFILE").map_or(false, |s| s == "release") {
         println!("cargo:rustc-cfg=release");
 
