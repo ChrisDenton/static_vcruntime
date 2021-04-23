@@ -29,16 +29,15 @@
 //!
 //! # Issues
 //!
-//! If this doesn't work for you then you may need to clean the build directory
-//! before rebuilding:
+//! It is very important that the `extern crate static_vcruntime;` line be at the root of your project. Otherwise Rust won't be able to find the necessary library when running in release mode.
+//!
+//! If you still have problems then you may need to clean the build directory before rebuilding:
 //!
 //! ```text
 //! cargo clean
 //! ```
 //!
-//! If you are having problems then, in the same directory as your Cargo.toml,
-//! create a folder called `.cargo`. In that folder create the file
-//! `config.toml` and add the following:
+//! If all else fails then, in the same directory as your Cargo.toml, create a folder called `.cargo`. In that folder create the file `config.toml` and add the following:
 //!
 //! ```ini
 //! [target.'cfg(all(windows, target_env = "msvc"))']
