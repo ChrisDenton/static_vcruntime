@@ -8,27 +8,29 @@ the library instead.
 
 Add this to your `Cargo.toml`:
 
-```ini
-[dependencies]
-static_vcruntime = "1.5"
+```toml
+[build-dependencies]
+static_vcruntime = "2.0"
 ```
 
-And put the follwing in your `main.rs`:
+And in your [build script]:
 
-```rust
-extern crate static_vcruntime;
+```rust,ignore
+fn main() {
+    static_vcruntime::metabuild();
+}
 ```
 
-Then when you build a release binary, the runtime will be statically linked:
+That is all. Then when you build a release binary, the runtime will be
+statically linked:
+ 
 ```text
 cargo build --release
 ```
 
 # Issues
 
-It is very important that the `extern crate static_vcruntime;` line be at the root of your project. Otherwise Rust won't be able to find the necessary library when running in release mode.
-
-If you still have problems then you may need to clean the build directory before rebuilding:
+If you have problems then you may need to clean the build directory before rebuilding:
 
 ```text
 cargo clean
@@ -40,3 +42,7 @@ If all else fails then, in the same directory as your Cargo.toml, create a folde
 [target.'cfg(all(windows, target_env = "msvc"))']
 rustflags = ["-C", "target-feature=+crt-static"]
 ```
+
+This makes it easier to override the defaults.
+
+[build script]: https://doc.rust-lang.org/cargo/reference/build-scripts.html
