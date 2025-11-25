@@ -62,17 +62,13 @@ use std::{env, fs, io::Write, path::Path};
 /// 
 /// [build script]: https://doc.rust-lang.org/cargo/reference/build-scripts.html
 pub fn metabuild() {
-    if env::var("CARGO_MANIFEST_DIR").is_err() {
-        panic!("`metabuild` must be called from a build script");
-    }
-	println!("cargo:rerun-if-env-changed=PROFILE");
-
-	// Early exit if not msvc or release
-	if env::var("CARGO_CFG_TARGET_ENV").as_deref() != Ok("msvc") || env::var("PROFILE").as_deref() != Ok("release") {
+	// Early exit if not msvc
+	let target = env::var("CARGO_CFG_TARGET_ENV").expect("`CARGO_CFG_TARGET_ENV` environment variable is missing. Ensure you're using `static_vcruntime` in a build script");
+	if target != "msvc" {
 		return;
 	}
 
-	// Disable conflicting libraries that aren't hard coded by Rust.
+	// Disable conflicting libraries
 	println!("cargo:rustc-link-arg=/NODEFAULTLIB:libvcruntimed.lib");
 	println!("cargo:rustc-link-arg=/NODEFAULTLIB:vcruntime.lib");
 	println!("cargo:rustc-link-arg=/NODEFAULTLIB:vcruntimed.lib");
@@ -81,7 +77,7 @@ pub fn metabuild() {
 	println!("cargo:rustc-link-arg=/NODEFAULTLIB:msvcrtd.lib");
 	println!("cargo:rustc-link-arg=/NODEFAULTLIB:libucrt.lib");
 	println!("cargo:rustc-link-arg=/NODEFAULTLIB:libucrtd.lib");
-    // Set the libraries we want.
+	// Set the libraries we want.
 	println!("cargo:rustc-link-arg=/DEFAULTLIB:libcmt.lib");
 	println!("cargo:rustc-link-arg=/DEFAULTLIB:libvcruntime.lib");
 	println!("cargo:rustc-link-arg=/DEFAULTLIB:ucrt.lib");
